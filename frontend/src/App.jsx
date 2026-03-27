@@ -145,7 +145,7 @@ export default function TurmaAEB(){
   try {
     // 🔗 CHAMANDO SEU BACKEND
     //const res = await fetch("http://localhost:8002/respond"
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/respond', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/respond`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
