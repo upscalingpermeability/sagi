@@ -161,7 +161,8 @@ export default function TurmaAEB(){
                 }
               }],
               contacts: [{
-                wa_id: "web_user"
+                wa_id: "web_user",
+                character: selected?.id || "sagicrab"
               }],
               metadata: {
                 phone_number_id: "web",
