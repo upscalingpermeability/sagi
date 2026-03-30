@@ -193,7 +193,7 @@ export default function TurmaAEB(){
 
     setMessages(p => [...p, {
       role: "assistant",
-      content: `Nao consegui conectar ao servidor em ${import.meta.env.VITE_API_URL}`,
+      content: `Não consegui conectar ao servidor em ${import.meta.env.VITE_API_URL}`,
       id: Date.now() + 1
     }]);
   } finally {
