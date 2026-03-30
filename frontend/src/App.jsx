@@ -129,8 +129,6 @@ export default function TurmaAEB(){
   const trimmed = text.trim();
   const userMsg = { role: "user", content: trimmed, id: Date.now() };
 
-  const currentMsgs = messagesRef.current;
-
   setMessages(prev => {
     const next = [...prev, userMsg];
     messagesRef.current = next;
@@ -142,9 +140,9 @@ export default function TurmaAEB(){
   loadingRef.current = true;
   setError(null);
     
-  console.log("selected:", selected);
-  console.log("selected?.id:", selected?.id);
-  console.log("character enviado:", selected?.id || (typeof selected === "string" ? selected : "sagicrab"));
+  console.log("selected:", selectedRef.current);
+  console.log("selected?.id:", selectedRef.current?.id);
+  console.log("character enviado:", selectedRef.current?.id || (typeof selectedRef.current === "string" ? selectedRef.current : "sagicrab"));
 
   try {
     // 🔗 CHAMANDO SEU BACKEND
@@ -223,7 +221,7 @@ export default function TurmaAEB(){
     setError(null);
     setMessages([]);
     messagesRef.current=[];
-  },[speak]);
+  },[]);
 
   const startListen = useCallback(()=>{
     const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
