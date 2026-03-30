@@ -89,7 +89,6 @@ export default function TurmaAEB(){
   const [loading,   setLoading]   = useState(false);
   const [speaking,  setSpeaking]  = useState(false);
   const [listening, setListening] = useState(false);
-  //const [voiceOn,   setVoiceOn]   = useState(true);
   const [voiceOn, setVoiceOn] = useState(false);
   const [error,     setError]     = useState(null);
 
@@ -139,14 +138,8 @@ export default function TurmaAEB(){
   setLoading(true);
   loadingRef.current = true;
   setError(null);
-    
-  console.log("selected:", selectedRef.current);
-  console.log("selected?.id:", selectedRef.current?.id);
-  console.log("character enviado:", selectedRef.current?.id || (typeof selectedRef.current === "string" ? selectedRef.current : "sagicrab"));
 
   try {
-    // 🔗 CHAMANDO SEU BACKEND
-    //const res = await fetch("http://localhost:8002/respond"
     const res = await fetch(`${import.meta.env.VITE_API_URL}/respond`, {
       method: "POST",
       headers: {
@@ -177,10 +170,6 @@ export default function TurmaAEB(){
     });
 
     const data = await res.json();
-
-    console.log("Resposta backend:", data);
-
-    // ✅ PEGA RESPOSTA DO FASTAPI
     const reply = data.message;
 
     if (reply) {
@@ -199,14 +188,12 @@ export default function TurmaAEB(){
       }]);
     }
 
-  } catch (e) {
-    console.error(e);
-
+  } catch {
     setError("Erro ao conectar com o backend.");
 
     setMessages(p => [...p, {
       role: "assistant",
-      content: "❌ Não consegui conectar ao servidor em http://localhost:8002",
+      content: `Nao consegui conectar ao servidor em ${import.meta.env.VITE_API_URL}`,
       id: Date.now() + 1
     }]);
   } finally {
