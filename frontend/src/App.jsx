@@ -141,6 +141,10 @@ export default function TurmaAEB(){
   setLoading(true);
   loadingRef.current = true;
   setError(null);
+    
+  console.log("selected:", selected);
+  console.log("selected?.id:", selected?.id);
+  console.log("character enviado:", selected?.id || (typeof selected === "string" ? selected : "sagicrab"));
 
   try {
     // 🔗 CHAMANDO SEU BACKEND
